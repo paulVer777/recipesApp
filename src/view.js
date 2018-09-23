@@ -2,7 +2,8 @@ import {
     getFilters
 } from './filters'
 import {
-    getRecipes
+    getRecipes,
+    removeIngredient
 } from './recipes'
 import {
     get
@@ -66,15 +67,15 @@ const renderIngredients = (id) => {
 
     document.querySelector('#ingredients').innerHTML = ''
 
-    ingredients.forEach((value, index) => {
+    ingredients.forEach((value, indx) => {
 
-        const element = createDOMIngredientItem(value)
+        const element = createDOMIngredientItem(value,index)
         document.querySelector('#ingredients').appendChild(element)
     })
 
 }
 
-const createDOMIngredientItem = (obj) => {
+const createDOMIngredientItem = (obj,index) => {
 
 
     const div = document.createElement('div')
@@ -85,6 +86,11 @@ const createDOMIngredientItem = (obj) => {
     checkbox.setAttribute('type', 'checkbox')
 
     button.textContent = 'X'
+    button.addEventListener('click',(e)=>{
+
+     removeIngredient(obj.id,index)
+     
+    })
 
     span.textContent = obj.title
 

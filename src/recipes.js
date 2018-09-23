@@ -1,6 +1,8 @@
 import uuidv4 from 'uuid/v4'
 import moment from 'moment'
-import {renderIngredients} from './view'
+import {
+    renderIngredients
+} from './view'
 
 ///// ARRAY OF RECIPES
 
@@ -56,7 +58,7 @@ const addRecipe = () => {
 //////////// UPDATE RECIPES ///////////
 
 
-const updateRecipes = (updates,id) => {
+const updateRecipes = (updates, id) => {
 
     const index = recipes.findIndex((value, index) => id === value.id)
 
@@ -68,22 +70,41 @@ const updateRecipes = (updates,id) => {
 
 ////////////// ADDING INGREDIENTS
 
-const addIngredients = (name,id) => {
+const addIngredients = (name, id) => {
 
     const index = recipes.findIndex((value, index) => id === value.id)
 
     recipes[index].ingredients.push({
         title: name,
-        available: false
-
+        available: false,
+        id: uuidv4()
     })
     setRecipesToLocalStorage()
-    
+
 }
 
 ///// SAVING ARRAY OF RECIPES IN VARIABLE
 
 recipes = getRecipesFromLocalStorage()
+
+/////// REMOVES INGREDIENT FROM RECIPE 
+
+const removeIngredient = (ingredientId, index) => {
+
+    const recipeId=recipes[index].id
+
+    const indexIngr = recipes[index].ingredients.findIndex((value, index) => value.id === ingredientId)
+
+     
+
+    recipes[index].ingredients.splice(indexIngr,1)
+
+    setRecipesToLocalStorage()
+    
+    renderIngredients(recipeId)
+
+}
+
 
 export {
     getRecipesFromLocalStorage,
@@ -92,5 +113,7 @@ export {
     addIngredients,
     updateRecipes,
     setRecipesToLocalStorage,
-    
+   removeIngredient
 }
+
+
