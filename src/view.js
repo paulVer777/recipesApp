@@ -39,9 +39,9 @@ const createDOMRecipeItem = (recipe) => {
 
     h2.textContent = recipe.title
 
-    h3.textContent = recipe.ingredients.length > 0 ? 'You have some ingredients' : 'You dont have ingredients'
-
-
+    h3.textContent=recipe.ingredients.filter((value, index) => value.available === true).length > 0 ? 'You have some ingredients' : 'You dont have any ingredients'
+    
+    
     div.addEventListener('click', (e) => {
 
         location.assign(`edit.html#${recipe.id}`)
@@ -86,12 +86,12 @@ const createDOMIngredientItem = (obj, index) => {
     checkbox.setAttribute('type', 'checkbox')
 
 
-     obj.available ? checkbox.setAttribute('checked',true) : ''
+    obj.available ? checkbox.setAttribute('checked', true) : ''
 
 
     checkbox.addEventListener('click', (e) => {
 
-     toggleStatus(obj.id,index,e.target.checked)
+        toggleStatus(obj.id, index, e.target.checked)
 
     })
 
