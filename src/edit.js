@@ -2,6 +2,7 @@ import {
     updateRecipes,
     addIngredients,
     getRecipes,
+    removeRecipe
 } from './recipes'
 
 import {
@@ -13,19 +14,19 @@ const id = location.hash.substring(1, )
     !id ? location.assign('index.html') : ''
 
 
-   
 
 
 
-    const populateElements = () => {
 
-        const recipes = getRecipes()
-        const index = recipes.findIndex((value, index) => id === value.id)
-    
-    
-        document.querySelector('#title').value = recipes[index].title
-        document.querySelector('#instructions').value = recipes[index].instructions
-    }
+const populateElements = () => {
+
+    const recipes = getRecipes()
+    const index = recipes.findIndex((value, index) => id === value.id)
+
+
+    document.querySelector('#title').value = recipes[index].title
+    document.querySelector('#instructions').value = recipes[index].instructions
+}
 
 populateElements()
 
@@ -59,4 +60,15 @@ document.querySelector('#add-ingredients').addEventListener('submit', (e) => {
     e.preventDefault()
     addIngredients(e.target.elements.text.value, id)
     renderIngredients(id)
+})
+
+
+
+///////// REMOVES RECIPE
+
+
+document.querySelector('#remove').addEventListener('click', (e) => {
+
+    removeRecipe(id)
+
 })
