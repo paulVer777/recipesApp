@@ -4,6 +4,9 @@ import {
 import {
     getRecipes
 } from './recipes'
+import {
+    get
+} from 'https';
 
 
 const renderRecipes = () => {
@@ -19,14 +22,14 @@ const renderRecipes = () => {
 
     filteredRecipes.forEach((value, index) => {
 
-        const element = createDOMItem(value)
+        const element = createDOMRecipeItem(value)
         document.querySelector('#recipes').appendChild(element)
 
     })
 
 }
 
-const createDOMItem = (recipe) => {
+const createDOMRecipeItem = (recipe) => {
 
     const div = document.createElement('div')
     const h2 = document.createElement('h2')
@@ -45,5 +48,58 @@ const createDOMItem = (recipe) => {
 }
 
 
+const renderIngredients = (id) => {
+     
+    const recipes = getRecipes()
 
-export { renderRecipes}
+    const index = recipes.findIndex((value, index) => id === value.id)
+
+    console.log(index)
+
+    const ingredients = recipes[index].ingredients
+
+     
+
+    document.querySelector('#ingredients').innerHTML = ''
+
+    ingredients.forEach((value, index) => {
+
+        const element = createDOMIngredientItem(value)
+        document.querySelector('#ingredients').appendChild(element)
+    })
+
+}
+
+
+
+const createDOMIngredientItem = (obj) => {
+
+
+    const div = document.createElement('div')
+    const span = document.createElement('span')
+    const checkbox = document.createElement('input')
+    const button = document.createElement('button')
+
+    checkbox.setAttribute('type', 'checkbox')
+
+    button.textContent = 'X'
+
+    span.textContent = obj.title
+
+    div.appendChild(checkbox)
+    div.appendChild(span)
+    div.appendChild(button)
+
+    return div
+}
+
+
+
+
+
+
+
+export {
+    renderRecipes,
+    renderIngredients
+}

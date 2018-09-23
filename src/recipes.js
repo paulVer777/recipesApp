@@ -1,6 +1,6 @@
 import uuidv4 from 'uuid/v4'
 import moment from 'moment'
-
+import {renderIngredients} from './view'
 
 ///// ARRAY OF RECIPES
 
@@ -66,7 +66,6 @@ const updateRecipes = (updates,id) => {
     setRecipesToLocalStorage()
 }
 
-
 ////////////// ADDING INGREDIENTS
 
 const addIngredients = (name,id) => {
@@ -79,8 +78,8 @@ const addIngredients = (name,id) => {
 
     })
     setRecipesToLocalStorage()
+    
 }
-
 
 ///// SAVING ARRAY OF RECIPES IN VARIABLE
 
@@ -92,5 +91,6 @@ export {
     addRecipe,
     addIngredients,
     updateRecipes,
-    setRecipesToLocalStorage
+    setRecipesToLocalStorage,
+    
 }
