@@ -42,45 +42,54 @@ const addRecipe = () => {
 
         id,
         title: '',
-        availableIngredients: '',
         createdAt: timestamp,
         editedAt: null,
         ingredients: [],
         instructions: ''
     })
     setRecipesToLocalStorage()
+    return id
 }
 
 ////////////////////////
 
+//////////// UPDATE RECIPES ///////////
+
+
+const updateRecipes = (updates,id) => {
+
+    const index = recipes.findIndex((value, index) => id === value.id)
+
+    typeof updates.title === 'string' ? recipes[index].title = updates.title : ''
+    typeof updates.instructions === 'string' ? recipes[index].instructions = updates.instructions : ''
+
+    setRecipesToLocalStorage()
+}
+
 
 ////////////// ADDING INGREDIENTS
 
-const addIngredients = (name, id) => {
+const addIngredients = (name,id) => {
 
     const index = recipes.findIndex((value, index) => id === value.id)
 
     recipes[index].ingredients.push({
-     title:name,
-     available:false
+        title: name,
+        available: false
 
     })
-   setRecipesToLocalStorage()
+    setRecipesToLocalStorage()
 }
-
-
 
 
 ///// SAVING ARRAY OF RECIPES IN VARIABLE
 
 recipes = getRecipesFromLocalStorage()
 
-
-
-
 export {
     getRecipesFromLocalStorage,
     getRecipes,
     addRecipe,
-    addIngredients
+    addIngredients,
+    updateRecipes
 }

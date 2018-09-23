@@ -11,7 +11,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, 'public/scripts'), // dirname is going to be different on each machine thats why we use resolve function. In the end we have an absolute patch that is different on each machine
-        filename: '[name]-bundle.js'// name of the output file
+        filename: '[name]-bundle.js'// name of the output file, [name] will be changed to name of entry file
     },
     module: {
         rules: [{

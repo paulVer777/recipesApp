@@ -1,0 +1,19 @@
+
+html{
+    font-size: 62.5%;
+}
+
+#search{
+
+  margin-bottom: 1rem;
+
+
+}
+
+.recipe{
+
+    border:1px solid black;
+    padding: 1rem;
+    width: 20%;
+    margin-bottom: 1rem;
+}
