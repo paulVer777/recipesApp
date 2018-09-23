@@ -94,15 +94,14 @@ const removeRecipe = (id) => {
 
     const index = recipes.findIndex((value, index) => id === value.id)
 
-     const confirmation=confirm('This action will delete recipe. Do You want to continue?')
+    const confirmation = confirm('This action will delete recipe. Do You want to continue?')
 
-     if(confirmation){
+    if (confirmation) {
         recipes.splice(index, 1)
         setRecipesToLocalStorage()
         location.assign('index.html')
-     }
-     else return 
-     
+    } else return
+
 }
 
 /////// REMOVES INGREDIENT FROM RECIPE 
@@ -123,6 +122,18 @@ const removeIngredient = (ingredientId, index) => {
 
 }
 
+////////////// TOGGLE STATUS OF INGREDIENTS
+
+const toggleStatus = (ingredientId, recipeId, status) => {
+
+    const indexIngredient = recipes[recipeId].ingredients.findIndex((value, index) => value.id === ingredientId)
+
+    recipes[recipeId].ingredients[indexIngredient].available = status
+
+    setRecipesToLocalStorage()
+}
+
+
 
 export {
     getRecipesFromLocalStorage,
@@ -132,5 +143,6 @@ export {
     updateRecipes,
     setRecipesToLocalStorage,
     removeIngredient,
-    removeRecipe
+    removeRecipe,
+    toggleStatus
 }

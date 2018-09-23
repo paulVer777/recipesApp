@@ -14,10 +14,6 @@ const id = location.hash.substring(1, )
     !id ? location.assign('index.html') : ''
 
 
-
-
-
-
 const populateElements = () => {
 
     const recipes = getRecipes()
@@ -61,8 +57,6 @@ document.querySelector('#add-ingredients').addEventListener('submit', (e) => {
     addIngredients(e.target.elements.text.value, id)
     renderIngredients(id)
 })
-
-
 
 ///////// REMOVES RECIPE
 

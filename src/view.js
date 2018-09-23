@@ -3,7 +3,8 @@ import {
 } from './filters'
 import {
     getRecipes,
-    removeIngredient
+    removeIngredient,
+    toggleStatus
 } from './recipes'
 import {
     get
@@ -41,12 +42,11 @@ const createDOMRecipeItem = (recipe) => {
     h3.textContent = recipe.ingredients.length > 0 ? 'You have some ingredients' : 'You dont have ingredients'
 
 
-    div.addEventListener('click',(e)=>{
+    div.addEventListener('click', (e) => {
 
-    location.assign(`edit.html#${recipe.id}`)
+        location.assign(`edit.html#${recipe.id}`)
 
     })
-
 
     div.appendChild(h2)
     div.appendChild(h3)
@@ -58,7 +58,7 @@ const createDOMRecipeItem = (recipe) => {
 
 
 const renderIngredients = (id) => {
-     
+
     const recipes = getRecipes()
 
     const index = recipes.findIndex((value, index) => id === value.id)
@@ -69,13 +69,13 @@ const renderIngredients = (id) => {
 
     ingredients.forEach((value, indx) => {
 
-        const element = createDOMIngredientItem(value,index)
+        const element = createDOMIngredientItem(value, index)
         document.querySelector('#ingredients').appendChild(element)
     })
 
 }
 
-const createDOMIngredientItem = (obj,index) => {
+const createDOMIngredientItem = (obj, index) => {
 
 
     const div = document.createElement('div')
@@ -85,11 +85,21 @@ const createDOMIngredientItem = (obj,index) => {
 
     checkbox.setAttribute('type', 'checkbox')
 
-    button.textContent = 'X'
-    button.addEventListener('click',(e)=>{
 
-     removeIngredient(obj.id,index)
-     
+     obj.available ? checkbox.setAttribute('checked',true) : ''
+
+
+    checkbox.addEventListener('click', (e) => {
+
+     toggleStatus(obj.id,index,e.target.checked)
+
+    })
+
+    button.textContent = 'X'
+    button.addEventListener('click', (e) => {
+
+        removeIngredient(obj.id, index)
+
     })
 
     span.textContent = obj.title
