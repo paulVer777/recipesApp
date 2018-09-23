@@ -91,5 +91,6 @@ export {
     getRecipes,
     addRecipe,
     addIngredients,
-    updateRecipes
+    updateRecipes,
+    setRecipesToLocalStorage
 }
