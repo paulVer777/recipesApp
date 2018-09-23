@@ -39,6 +39,14 @@ const createDOMRecipeItem = (recipe) => {
 
     h3.textContent = recipe.ingredients.length > 0 ? 'You have some ingredients' : 'You dont have ingredients'
 
+
+    div.addEventListener('click',(e)=>{
+
+    location.assign(`edit.html#${recipe.id}`)
+
+    })
+
+
     div.appendChild(h2)
     div.appendChild(h3)
     div.classList.add('recipe')
@@ -54,11 +62,7 @@ const renderIngredients = (id) => {
 
     const index = recipes.findIndex((value, index) => id === value.id)
 
-    console.log(index)
-
     const ingredients = recipes[index].ingredients
-
-     
 
     document.querySelector('#ingredients').innerHTML = ''
 
@@ -69,8 +73,6 @@ const renderIngredients = (id) => {
     })
 
 }
-
-
 
 const createDOMIngredientItem = (obj) => {
 
@@ -92,12 +94,6 @@ const createDOMIngredientItem = (obj) => {
 
     return div
 }
-
-
-
-
-
-
 
 export {
     renderRecipes,

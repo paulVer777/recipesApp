@@ -1,12 +1,34 @@
 import {
     updateRecipes,
     addIngredients,
-    
+    getRecipes,
 } from './recipes'
 
-import {renderIngredients} from './view'
+import {
+    renderIngredients
+} from './view'
 
 const id = location.hash.substring(1, )
+
+    !id ? location.assign('index.html') : ''
+
+
+   
+
+
+
+    const populateElements = () => {
+
+        const recipes = getRecipes()
+        const index = recipes.findIndex((value, index) => id === value.id)
+    
+    
+        document.querySelector('#title').value = recipes[index].title
+        document.querySelector('#instructions').value = recipes[index].instructions
+    }
+
+populateElements()
+
 
 renderIngredients(id)
 
