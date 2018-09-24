@@ -9,6 +9,10 @@ import {
     renderIngredients
 } from './view'
 
+import {
+    indexFinder
+} from './utilities'
+
 const id = location.hash.substring(1, )
 
     !id ? location.assign('index.html') : ''
@@ -17,7 +21,7 @@ const id = location.hash.substring(1, )
 const populateElements = () => {
 
     const recipes = getRecipes()
-    const index = recipes.findIndex((value, index) => id === value.id)
+    const index = indexFinder(recipes, id)
 
 
     document.querySelector('#title').value = recipes[index].title

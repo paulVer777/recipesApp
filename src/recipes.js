@@ -4,6 +4,8 @@ import {
     renderIngredients
 } from './view'
 
+import {indexFinder} from './utilities'
+
 ///// ARRAY OF RECIPES
 
 let recipes
@@ -60,7 +62,7 @@ const addRecipe = () => {
 
 const updateRecipes = (updates, id) => {
 
-    const index = recipes.findIndex((value, index) => id === value.id)
+    const index = indexFinder(recipes,id)
 
     typeof updates.title === 'string' ? recipes[index].title = updates.title : ''
     typeof updates.instructions === 'string' ? recipes[index].instructions = updates.instructions : ''
@@ -73,7 +75,7 @@ const updateRecipes = (updates, id) => {
 
 const addIngredients = (name, id) => {
 
-    const index = recipes.findIndex((value, index) => id === value.id)
+    const index = indexFinder(recipes,id)
 
     recipes[index].ingredients.push({
         title: name,
@@ -93,7 +95,7 @@ recipes = getRecipesFromLocalStorage()
 
 const removeRecipe = (id) => {
 
-    const index = recipes.findIndex((value, index) => id === value.id)
+    const index = indexFinder(recipes,id)
 
     const confirmation = confirm('This action will delete recipe. Do You want to continue?')
 
@@ -133,8 +135,6 @@ const toggleStatus = (ingredientId, recipeId, status) => {
 
     setRecipesToLocalStorage()
 }
-
-
 
 export {
     getRecipesFromLocalStorage,
