@@ -10,15 +10,20 @@ import {
     get
 } from 'https';
 
-
 const renderRecipes = () => {
 
     const recipes = getRecipes()
     const filters = getFilters()
 
-    let filteredRecipes = recipes.filter((value, index) => value.title.toLowerCase().includes(filters.searchText.toLowerCase()))
+     let filteredRecipes = recipes.sort((a,b)=>{
+
+      if(filters.sortBy === 'alpha') return a.title.toLowerCase() < b.title.toLowerCase() ? -1 :1
+      if(filters.sortBy === 'created') return a.createdAt < b.createdAt ? -1 :1
+      if(filters.sortBy === 'edited') return a.createdAt > b.createdAt ? -1 :1
+     })
 
 
+     filteredRecipes = recipes.filter((value, index) => value.title.toLowerCase().includes(filters.searchText.toLowerCase()))
 
     document.querySelector('#recipes').innerHTML = ''
 
@@ -39,7 +44,7 @@ const createDOMRecipeItem = (recipe) => {
 
     h2.textContent = recipe.title
 
-    h3.textContent=recipe.ingredients.filter((value, index) => value.available === true).length > 0 ? 'You have some ingredients' : 'You dont have any ingredients'
+    h3.textContent=recipe.ingredients.filter((value, index) => value.available === true).length > 0 ? "You have some ingredients" : "You don't have any ingredients"
     
     
     div.addEventListener('click', (e) => {

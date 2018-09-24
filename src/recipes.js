@@ -64,6 +64,7 @@ const updateRecipes = (updates, id) => {
 
     typeof updates.title === 'string' ? recipes[index].title = updates.title : ''
     typeof updates.instructions === 'string' ? recipes[index].instructions = updates.instructions : ''
+    recipes[index].editedAt=moment().valueOf()
 
     setRecipesToLocalStorage()
 }
