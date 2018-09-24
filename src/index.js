@@ -39,15 +39,11 @@ document.querySelector('#add').addEventListener('click', (e) => {
 
 //////////////////// SORTING //////
 
-
-
-
 document.querySelector('#sort-by').addEventListener('change', (e) => {
 
     setFilters({
         sortBy: e.target.value
     })
-     console.log('p')
     renderRecipes()
 
 })

@@ -36,6 +36,7 @@ document.querySelector('#title').addEventListener('input', (e) => {
     updateRecipes({
         title: e.target.value
     }, id)
+
 })
 
 //// UPDATES INSTRUCTIONS OF RECIPE EVERY TIME INPUT VALUE CHANGES
@@ -54,6 +55,7 @@ document.querySelector('#add-ingredients').addEventListener('submit', (e) => {
     e.preventDefault()
     addIngredients(e.target.elements.text.value, id)
     renderIngredients(id)
+    e.target.elements.text.value = ''
 })
 
 ///////// REMOVES RECIPE
