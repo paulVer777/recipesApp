@@ -10,6 +10,8 @@ import {
     get
 } from 'https';
 
+////// DISPLAYS DATA TO USERS SCREENS 
+
 const renderRecipes = () => {
 
     const recipes = getRecipes()
@@ -41,7 +43,7 @@ const createDOMRecipeItem = (recipe) => {
     const h2 = document.createElement('h2')
     const h3 = document.createElement('h3')
 
-    h2.textContent = recipe.title
+    h2.textContent = recipe.title === '' ? 'Unnamed' : recipe.title
 
     h3.textContent = recipe.ingredients.filter((value, index) => value.available === true).length > 0 ? "You have some ingredients" : "You don't have any ingredients"
 
@@ -59,7 +61,6 @@ const createDOMRecipeItem = (recipe) => {
     return div
 
 }
-
 
 const renderIngredients = (id) => {
 

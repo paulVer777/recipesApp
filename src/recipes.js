@@ -24,7 +24,6 @@ const getRecipesFromLocalStorage = () => {
 
 //////////////////////////
 
-
 /////// SETTING RECIPES TO LOCAL STORAGE
 
 const setRecipesToLocalStorage = () => localStorage.setItem('Recipes', JSON.stringify(recipes))
@@ -65,6 +64,7 @@ const updateRecipes = (updates, id) => {
     const index = indexFinder(recipes,id)
 
     typeof updates.title === 'string' ? recipes[index].title = updates.title : ''
+    
     typeof updates.instructions === 'string' ? recipes[index].instructions = updates.instructions : ''
     recipes[index].editedAt=moment().valueOf()
 

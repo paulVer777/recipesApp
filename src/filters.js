@@ -2,14 +2,13 @@
 
 const filters={
     searchText:'',
-    sortBy:'Alphabetically'
+    sortBy:'alpha'
 }
 
+const setFilters = ({searchText,sortBy}) =>{
 
-const setFilters = (updates) =>{
-
-typeof updates.searchText === 'string' ? filters.searchText = updates.searchText :''
-typeof updates.sortBy === 'string' ? filters.sortBy = updates.sortBy : ''
+typeof searchText === 'string' ? filters.searchText = searchText :''
+typeof sortBy === 'string' ? filters.sortBy = sortBy : ''
 
 }
 

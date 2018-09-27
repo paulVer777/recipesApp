@@ -17,19 +17,16 @@ const id = location.hash.substring(1, )
 
     !id ? location.assign('index.html') : ''
 
-
 const populateElements = () => {
 
     const recipes = getRecipes()
     const index = indexFinder(recipes, id)
-
 
     document.querySelector('#title').value = recipes[index].title
     document.querySelector('#instructions').value = recipes[index].instructions
 }
 
 populateElements()
-
 
 renderIngredients(id)
 

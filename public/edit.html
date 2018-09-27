@@ -5,31 +5,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles.css">
     <title>Edit</title>
 </head>
 
 <body>
 
-    <input type="text" id='title' placeholder="name of recipe" name="name">
+    <div class="container">
 
-    <hr />
+        <form class="edit-box">
+            <input type="text" id='title' placeholder="name of recipe" name="name" class="edit-box__title">
+            <textarea id="instructions" placeholder="instructions" class="edit-box__instructions"></textarea>
+        </form>
 
-    <textarea id="instructions" placeholder="instructions"></textarea>
+        <div class="ingredients-box">
 
-    <hr />
+            <div id="ingredients" class="ingredients-box__items"></div>
 
-    <div id="ingredients"></div>
+        </div>
 
-    <form id='add-ingredients'>
-        <input id="ingredient-name" name='text' placeholder="name of ingridient">
-        <button type="submit">Add Ingredient</button>
-    </form>
+        <form id='add-ingredients' class="ingredients-box-manager">
+            <input id="ingredient-name" name='text' placeholder="name of ingredient" class="ingredients-box-manager__name">
+            <button type="submit" class="ingredients-box-manager__btn btn">Add Ingredient</button>
+        </form>
 
-    <h2>Danger zone</h2>
+        <h2 class="h2 h2--danger">Danger Zone</h2>
 
-    <button id='remove'>Delete recipe</button>
+        <div class="danger-zone">
 
-    <a href='index.html'>Home</a>
+            <button id='remove' class="danger-zone__btn btn">Delete recipe</button>
+
+        </div>
+
+        <a href='index.html' class="home-return btn">Home</a>
+
+    </div>
 
 
     <script src="./scripts/edit-bundle.js"></script>
